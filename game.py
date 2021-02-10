@@ -294,9 +294,6 @@ def main():
 						board = solved_board
 
 
-				if event.key == pygame.K_SPACE:
-					print(solved_board)
-
 
 
 
