@@ -141,10 +141,7 @@ def validate_number(grid, row, col, number):
 
 def reset():
 	global board
-	if key_var == 114:
-		board = [x[:] for x in number_grid]
-		return
-
+	board = [x[:] for x in number_grid]
 	return
 
 
@@ -210,6 +207,8 @@ def get_numbers(key):
 	key_list = [49, 50, 51, 52, 53, 54, 55, 56, 57]
 	if key in key_list:
 		return chr(key)
+	# elif key == 82 or key == 68:
+	# 	return
 	else:
 		return 0
 
@@ -281,20 +280,15 @@ def main():
 			if event.type == pygame.KEYDOWN:
 				key_var = event.key
 				
-				reset()
 				add_numbers(row, col)
 
+				if event.key == pygame.K_r:
+					reset()
+
 				if event.key == pygame.K_d:
-					pressed += 1
-					if pressed <=1:
-						solve = solve_sudoku(board)
-						if solve:
-							solved_board = [x[:] for x in board]
-					else:
-						board = solved_board
+					reset()
 
-
-
+					solve_sudoku(board)
 
 
 
