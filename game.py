@@ -47,6 +47,9 @@ key_var = 65
 
 SquareColor = (0,255, 0)
 
+solved_board = None
+pressed = 0
+
 
 GREY = (230, 230, 230)
 
@@ -262,6 +265,10 @@ def draw(row, col):
 
 def main():
 	global key_var
+	global solved_board
+	global pressed
+	global board
+
 	row, col = 0,0
 	while True:
 		for event in pygame.event.get():
@@ -278,7 +285,19 @@ def main():
 				add_numbers(row, col)
 
 				if event.key == pygame.K_d:
-					solve_sudoku(board)
+					pressed += 1
+					if pressed <=1:
+						solve = solve_sudoku(board)
+						if solve:
+							solved_board = [x[:] for x in board]
+					else:
+						board = solved_board
+
+
+				if event.key == pygame.K_SPACE:
+					print(solved_board)
+
+
 
 
 
