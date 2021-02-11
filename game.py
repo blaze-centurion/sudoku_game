@@ -54,6 +54,13 @@ GREY = (230, 230, 230)
 
 
 
+print("This is Simple Sudoku Game Made By Roshan: ")
+print("Guide:- \nPress R for restart the game\nPress D for Solve Automatically\nPress ESC. to exit the game")
+print("Enjoy The Game :)")
+
+
+
+
 def solve_sudoku(grid):
 
 
@@ -287,6 +294,7 @@ def main():
 
 				if event.key == pygame.K_d:
 					board = solved_grid
+					print("Solved")
 
 
 
@@ -294,37 +302,3 @@ def main():
 
 
 main()
-
-
-
-
-
-
-
-
-
-
-
-
-#
-# a = [
-# 	[1,2,3,4,5,6,7,8,9],
-# 	[1,2,3,4,5,6,7,8,9],
-# 	[1,2,3,4,5,6,7,8,9],
-# 	[1,2,3,4,5,6,7,8,9],
-# 	[1,2,3,4,5,6,7,8,9],
-# 	[1,2,3,4,5,6,7,8,9],
-# 	[1,2,3,4,5,6,7,8,9],
-# 	[1,2,3,4,5,6,7,8,9],
-# 	[1,2,3,4,5,6,7,8,9]
-# ]
-#
-# b = a.copy()
-#
-# print("Before A: ", a)
-# print("Before B: ", b)
-#
-#
-#
-# print("After A: ", a)
-# print("After B: ", b)
