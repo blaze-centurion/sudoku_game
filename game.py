@@ -39,15 +39,13 @@ number_grid = [
 board = [x[:] for x in number_grid]
 
 
-
-
 offset = 20
 
 key_var = 65
 
 SquareColor = (0,255, 0)
 
-solved_board = None
+
 pressed = 0
 
 
@@ -68,7 +66,7 @@ def solve_sudoku(grid):
 
 
 	for i in range(1,10):
-		if validate_number(grid, row+1, col+1, i):			
+		if validate_number(grid, row+1, col+1, i):
 
 			if solve_sudoku(grid):
 				return True
@@ -76,6 +74,9 @@ def solve_sudoku(grid):
 			grid[row][col] = 0
 
 	return  False
+
+
+
 
 
 
@@ -101,7 +102,7 @@ def validate_number(grid, row, col, number):
 
 	same_no_in_row = [x for x in range(len(row_list)) if row_list[x] == number ]
 
-	
+
 	if len(same_no_in_row) != 1:
 		grid[row-1][col-1] = 0
 		return False
@@ -126,17 +127,18 @@ def validate_number(grid, row, col, number):
 	for i in range(bx * 3, bx * 3 + 3):
 		for j in range(by * 3, by * 3 + 3):
 			box_list.append(grid[i][j])
-	
+
 	same_no_in_box = [i for i in range(len(box_list)) if box_list[i] == number]
-	
+
 	if len(same_no_in_box) != 1:
 		grid[row-1][col-1] = 0
 		return False
-	
+
 	return True
 
 
-
+solved_grid = [x[:] for x in number_grid]
+solved_board = solve_sudoku(solved_grid)
 
 
 def reset():
@@ -207,8 +209,6 @@ def get_numbers(key):
 	key_list = [49, 50, 51, 52, 53, 54, 55, 56, 57]
 	if key in key_list:
 		return chr(key)
-	# elif key == 82 or key == 68:
-	# 	return
 	else:
 		return 0
 
@@ -226,7 +226,7 @@ def add_numbers(row, col):
 			SquareColor = (0,255, 0)
 		else:
 			SquareColor = (255,0,0)
-		
+
 	elif number_grid[row-1][col-1] == 0 and number == 0:
 		board[row-1][col-1] = 0
 		return
@@ -262,9 +262,9 @@ def draw(row, col):
 
 
 
+
 def main():
 	global key_var
-	global solved_board
 	global pressed
 	global board
 
@@ -279,16 +279,14 @@ def main():
 				row, col = get_row_col(x,y)
 			if event.type == pygame.KEYDOWN:
 				key_var = event.key
-				
+
 				add_numbers(row, col)
 
 				if event.key == pygame.K_r:
 					reset()
 
 				if event.key == pygame.K_d:
-					reset()
-
-					solve_sudoku(board)
+					board = solved_grid
 
 
 
@@ -297,3 +295,36 @@ def main():
 
 main()
 
+
+
+
+
+
+
+
+
+
+
+
+#
+# a = [
+# 	[1,2,3,4,5,6,7,8,9],
+# 	[1,2,3,4,5,6,7,8,9],
+# 	[1,2,3,4,5,6,7,8,9],
+# 	[1,2,3,4,5,6,7,8,9],
+# 	[1,2,3,4,5,6,7,8,9],
+# 	[1,2,3,4,5,6,7,8,9],
+# 	[1,2,3,4,5,6,7,8,9],
+# 	[1,2,3,4,5,6,7,8,9],
+# 	[1,2,3,4,5,6,7,8,9]
+# ]
+#
+# b = a.copy()
+#
+# print("Before A: ", a)
+# print("Before B: ", b)
+#
+#
+#
+# print("After A: ", a)
+# print("After B: ", b)
